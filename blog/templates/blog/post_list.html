@@ -1,12 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-
-        <p>Hi there!</p>
-        <p>Welcome!</p>
-
-<h1><a href="">Informatics</a><h1>
-  <h2>24-25th November 2018<h2>
-    <h3>Lausanne<h3>
-      <h4>My name is Alice Doppenberg and I study Informatics this weekend with Iris<h4>
-{% endblock %}        
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
